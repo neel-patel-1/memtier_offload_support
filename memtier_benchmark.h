@@ -24,6 +24,7 @@
 
 #ifdef USE_TLS
 #include <openssl/ssl.h>
+#include <openssl/engine.h>
 #endif
 
 #define LOGLEVEL_ERROR 0

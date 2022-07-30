@@ -383,6 +383,7 @@ static int config_parse_args(int argc, char *argv[], struct benchmark_config *cf
         o_command_key_pattern,
         o_command_ratio,
         o_tls,
+        o_tls_offload,
         o_tls_cert,
         o_tls_key,
         o_tls_cacert,
@@ -397,6 +398,7 @@ static int config_parse_args(int argc, char *argv[], struct benchmark_config *cf
         { "protocol",                   1, 0, 'P' },
 #ifdef USE_TLS
         { "tls",                        0, 0, o_tls },
+        { "offload_tls",                0, 0, o_tls_offload },
         { "cert",                       1, 0, o_tls_cert },
         { "key",                        1, 0, o_tls_key },
         { "cacert",                     1, 0, o_tls_cacert },
