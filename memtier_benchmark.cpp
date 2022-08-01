@@ -1247,9 +1247,9 @@ int main(int argc, char *argv[])
 
 #ifdef USE_TLS
     // Initialize OpenSSL only if we're really going to use it.
+
     if (cfg.tls) {
         init_openssl();
-
 	    ENGINE_load_dynamic();
 	    ENGINE *qatengine = ENGINE_by_id("qatengine");
 
@@ -1271,15 +1271,8 @@ int main(int argc, char *argv[])
 			exit(1);
 		}
 
-        //cfg.openssl_ctx = SSL_CTX_new(SSLv23_client_method());
-		//SSL_CTX_set_options(cfg.openssl_ctx, SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3);
-		cfg.openssl_ctx = SSL_CTX_new(TLSv1_2_method());
-		SSL_CTX_set_cipher_list(cfg.openssl_ctx, "TLS1_3_RFC_AES_256_GCM_SHA256");
-
-
-		SSL_CTX_set_ecdh_auto(cfg.openssl_ctx, 1);
-		EVP_add_cipher(EVP_aes_256_gcm());
-		//LoadCertificates(cfg.openssl_ctx, "newreq.pem", "key.pem");
+        cfg.openssl_ctx = SSL_CTX_new(SSLv23_client_method());
+        SSL_CTX_set_options(cfg.openssl_ctx, SSL_OP_NO_SSLv2 | SSL_OP_NO_SSLv3);
 
         if (cfg.tls_cert) {
             if (!SSL_CTX_use_certificate_file(cfg.openssl_ctx, cfg.tls_cert,
